@@ -1,0 +1,17 @@
+[mysql001]
+host = 127.0.0.1
+port = 3306
+user = anonymous
+password = anonymous
+database = anonymous
+charset = utf8
+
+
+[mysql007]
+host = 127.0.0.1
+port = 3307
+user = anonymous
+password = anonymous
+database = anonymous
+charset = utf8
+

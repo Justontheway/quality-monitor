@@ -1,0 +1,23 @@
+[email]
+server = smtp.anonymous.com
+port = 465
+user = anonymous@anonymous.com
+passwd = anonymous
+encoding = utf-8
+
+
+
+[receiver]
+email = anonymous@anonymous.com
+phone = 11011910086
+
+
+
+[shortmessage]
+server = http://sms.anonymous.com/sendsms
+user = anonymous
+passwd = anonymous
+templateId = 007
+traceId = 007
+msgType = 007
+
