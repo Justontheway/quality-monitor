@@ -1,0 +1,37 @@
+<html>
+    <head></head>
+    <!<b><font color="black"> 状态信息 </font></b>-->
+    <b><font color="black"> <a href="http://azkaban.jdb-dev.com/manager?project=JDH-Warehouse&flow=data_warehouse" target=_blank>状态信息 </a></font></b>
+    <b><font color="black"> 状态信息 </font></b>
+    <br/>
+    <br/>
+    <table border="1" cellspacing="0" cellpadding="4">
+        <td align= "center" ><b>统计项</b></td>
+        <td align= "center" ><b>统计值</b></td>
+        <td align= "center" ><b>样本数</b></td>
+        <td align= "center" ><b>均值  </b></td>
+        <td align= "center" ><b>标准差</b></td>
+        <td align= "center" ><b>精度  </b></td>
+        <td align= "center" ><b>模型  </b></td>
+        <td align= "center" ><b>预测值 </b></td>
+        <td align= "center" ><b>结果评判 </b></td>
+
+        {% block content %}
+        {% for data in dataset %}
+        <tr bgcolor = "{{ data.color }}" >
+        <td align= "center" > {{ data.key }} </td>
+        <td align= "center" > {{ data.value }} </td>
+        <td align= "center" > {{ data.count }} </td>
+        <td align= "center" > {{ data.mean }} </td>
+        <td align= "center" > {{ data.var }} </td>
+        <td align= "center" > {{ data.precision }} </td>
+        <td align= "center" > {{ data.model }} </td>
+        <td align= "center" > {{ data.predict }} </td>
+        <td align= "center" > {{ data.status }} </td>
+        </tr>
+        {% endfor %}
+        {% endblock %}
+
+    </table>
+</html>
+
