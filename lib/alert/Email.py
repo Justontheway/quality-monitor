@@ -23,7 +23,7 @@ class Email(Alert):
         conn.login(user, passwd)
         conn.sendmail(user, ",".join(_to_list), _email.as_string())
         conn.quit()
-        print "send email to %s."%(_email["to"])
+        print "send email to %s"%(_email["to"])
     def _gen_email_without_attach(self, _msg, msg_info, someone):
         return MIMEText(_msg, "html", msg_info["encoding"])
     def _gen_email_with_attach(self, _msg, msg_info, someone):
@@ -43,8 +43,8 @@ class Email(Alert):
         try:
             msg = gen_email(msg, msg_info, someone)
             msg["Subject"] = Header(msg_info["subject"], msg_info["encoding"])
-            #msg["from"] = Header(msg_info["from"], msg_info["encoding"])
-            msg["from"] = msg_info["from"]
+            msg["from"] = Header(msg_info["from"], msg_info["encoding"])
+            #msg["from"] = msg_info["from"]
             msg["to"] = ",".join(someone)
             print msg["Subject"]
             print msg["from"]
@@ -53,4 +53,6 @@ class Email(Alert):
         #except NotImplementedError, ex:
             print Exception,":", ex
             print "Send Email Error!"
+            import traceback
+            print traceback.print_exc()
 

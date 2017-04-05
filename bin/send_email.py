@@ -5,6 +5,9 @@ import ConfigParser
 import optparse
 
 sys.path.append(os.path.join(os.getenv("MONITOR_HOME", ".."), "lib"))
+print sys.path
+
+import alert 
 
 from alert import Email
 reload(sys)
@@ -21,12 +24,12 @@ def load_conf(confs = []):
 
 def parse_args(argv = []):
     parser = optparse.OptionParser()
-    parser.add_option("-a", "--attachment", dest = "attachment", default = None)
+    parser.add_option("-a", "--attachment", dest = "attachment", default = None, help = "attachment list, use ':' to split multiattach, use ',' to split attachment-file-path and attachment-name")
     parser.add_option("-b", "--base", dest = "home", default = "..")
     parser.add_option("-C", "--conf", dest = "confpath", default = "conf/alarm.conf")
-    parser.add_option("-s", "--subject", dest = "subject")
-    parser.add_option("-f", "--from", dest = "_from")
-    parser.add_option("-t", "--to", dest = "_to")
+    parser.add_option("-s", "--subject", dest = "subject", help = "subject of this email")
+    parser.add_option("-f", "--from", dest = "_from", default = "日常统计", help = "email from info, could be a name")
+    parser.add_option("-t", "--to", dest = "_to", help = "email destination list")
     opt, args = parser.parse_args(argv)
     print args
     if len(args) < 1:
@@ -43,7 +46,7 @@ def send_email():
     email_conf = conf["email"]
     for key,value in email_conf.items():
         print key,value
-    email_conf["from"] = _from.decode("utf8") if _from else u"日常统计"
+    email_conf["from"] = _from
     email_conf["subject"] = subject
     email_conf["attachment"] = attachment
     import template
