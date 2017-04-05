@@ -47,5 +47,9 @@ def data_gen():
 
 
 if __name__ == "__main__":
-    data_gen()
+    print sys.argv
+    ds = data_gen()
+    print type(ds)
+    print ds.keys()
+    print ds[ds.keys()[0]]
 
