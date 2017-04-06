@@ -8,7 +8,7 @@ from data_gen import data_gen
 from model import Statistic, Precision
 
 
-def model_test()
+def model_test():
     period = 20
     d = data_gen()
     model1 = Statistic.Statistic()
