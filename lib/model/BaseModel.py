@@ -4,6 +4,7 @@ class BaseModel(object):
     def __init__(self, name, param={}):
         self.param = param
         self.name = name
+        self.model = None
     def __del__(self):
         return
     def __enter__(self):
