@@ -1,5 +1,5 @@
 from decimal import Decimal
-import numpy
+import numpy as np
 
 from BaseModel import BaseModel
 
@@ -14,8 +14,8 @@ class Statistic(BaseModel):
         else return E(x), Var(x).'''
         if len(dataset) < 1:
             return -1, -1
-        narray = numpy.array([ Decimal(ele) for ele in dataset ])
-        return narray.mean(), narray.var()
+        narray = np.array([ Decimal(ele) for ele in dataset ])
+        return narray.mean(), np.sqrt(narray.var())
 
     def evaluate(self, dataset):
         '''Return E(x), Var(x)'''
