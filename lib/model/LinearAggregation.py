@@ -1,3 +1,4 @@
+#-*- coding:utf-8 -*-
 from decimal import Decimal
 import numpy as np
 from sklearn.linear_model import LinearRegression
@@ -16,7 +17,13 @@ class LinearAggregation(BaseModel):
         '''
         if len(dataset) < 2:
             return False
-        y_label = np.array([ Decimal(ele) for ele in dataset ])
+        y_label_raw = np.array([ Decimal(ele) for ele in dataset ])
+        mu = y_label_raw.mean()
+        sigma = np.sqrt(y_label_raw.var())
+        # 根据 |X - mu| / sigma <= 2 进行离群值筛选过滤
+        y_label = y_label_raw[(y_label_raw <= 2 * sigma + mu) & (y_label_raw >= mu - 2 * sigma)]
+        print y_label_raw.size, y_label.size,
+
         x_label = np.linspace(1, y_label.size, y_label.size)
         model = LinearRegression()
         model.fit(x_label.reshape(-1, 1), y_label)
