@@ -1,13 +1,13 @@
 #-*- coding:utf-8 -*-
 from decimal import Decimal
 import numpy as np
-from sklearn.linear_model import LinearRegression
+from sklearn import linear_model
 
 
 from BaseModel import BaseModel
 
 
-class LinearAggregation(BaseModel):
+class LinearRegression(BaseModel):
     def __init__(self, param = {}):
         BaseModel.__init__(self, "linear-aggregation", param)
 
@@ -25,7 +25,7 @@ class LinearAggregation(BaseModel):
         print y_label_raw.size, y_label.size,
 
         x_label = np.linspace(1, y_label.size, y_label.size)
-        model = LinearRegression()
+        model = linear_model.LinearRegression()
         model.fit(x_label.reshape(-1, 1), y_label)
         self.model = model
         return True
