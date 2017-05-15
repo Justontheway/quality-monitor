@@ -6,7 +6,10 @@ class Precision(BaseModel):
 
     def get_precision(self, number):
         strs = str(number).rstrip('0').split(".")
-        return len(strs[1])
+        try:
+            return len(strs[1])
+        except:
+            return 0
 
     def evaluate(self, dataset):
         '''If all data in dataset are numeric, then return 1,1.
